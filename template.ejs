@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Hue Sensor Temperatures</h1>
+    <pre><%= JSON.stringify(hueData, null, 2) %></pre>
     <ul>
         <% Object.keys(data).forEach(function(sensorId) { %>
             <% var sensor = data[sensorId]; %>
