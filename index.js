@@ -19,6 +19,9 @@ async function fetchDataFromHue() {
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+
 // Route to render the HTML page
 app.get('/', async (req, res, next) => {
     try {
@@ -46,9 +49,6 @@ app.use((err, req, res, next) => {
     console.error('Internal Server Error:', err); // Log the error for debugging purposes
     res.status(500).send('Internal Server Error: ' + err.message);
 });
-
-// Serve static files from the 'public' directory
-app.use(express.static('public'));
 
 // Start the server to listen on all network interfaces
 app.listen(PORT, '0.0.0.0', () => {
