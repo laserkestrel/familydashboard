@@ -12,10 +12,11 @@
         <% Object.keys(hueData).forEach(function(sensorId) { %>
             <% const sensor = hueData[sensorId]; %>
             <% if (sensor.state.temperature !== undefined) { %>
-            <div class="sensor">
-                <h2><%= sensor.name %></h2>
-                <p>Temperature: <%= (sensor.state.temperature / 100).toFixed(2) %></p>
-            </div>
+                <div class="sensor">
+                    <h2><%= sensor.name %></h2>
+                    <p>Temperature: <%= (sensor.state.temperature / 100).toFixed(2) %></p>
+                </div>
+            <% } %>
         <% }); %>
     </div>
 </body>
