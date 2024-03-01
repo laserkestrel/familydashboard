@@ -12,7 +12,7 @@
             <% if (hueData[sensorId].state.temperature !== undefined) { %>
                 <li>
                     Sensor ID: <%= sensorId %>, 
-                    Temperature: <%= hueData[sensorId].state.temperature %>
+                    Temperature: <%= (hueData[sensorId].state.temperature / 100).toFixed(2) %>
                 </li>
             <% } %>
         <% }); %>
