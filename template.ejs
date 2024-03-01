@@ -10,10 +10,13 @@
     <ul>
         <% Object.keys(hueData).forEach(function(sensorId) { %>
             <% if (hueData[sensorId].state.temperature !== undefined) { %>
-                <li>
-                    Sensor Name: <%= hueData[sensorId].name %>,  
-                    Temperature: <%= (hueData[sensorId].state.temperature / 100).toFixed(2) %>
-                </li>
+                <% const adjacentSensorId = parseInt(sensorId) - 2; %>
+                <% if (hueData[adjacentSensorId] !== undefined) { %>
+                    <li>
+                        Sensor Name: <%= hueData[adjacentSensorId].name %>, 
+                        Temperature: <%= (hueData[sensorId].state.temperature / 100).toFixed(2) %>
+                    </li>
+                <% } %>
             <% } %>
         <% }); %>
     </ul>
