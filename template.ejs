@@ -9,7 +9,8 @@
 <body>
     <h1>Hue Sensor Temperatures</h1>
     <div id="sensor-container" class="sensor-grid">
-        <% hueData.forEach(function(sensor) { %>
+        <% Object.keys(hueData).forEach(function(sensorId) { %>
+            <% const sensor = hueData[sensorId]; %>
             <div class="sensor">
                 <h2><%= sensor.name %></h2>
                 <p>Temperature: <%= (sensor.state.temperature / 100).toFixed(2) %></p>
