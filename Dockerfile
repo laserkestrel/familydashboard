@@ -10,4 +10,4 @@ RUN npm install
 COPY . .
 # Define port to expose application for the outside world..
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD [ "node", "index.js" ]
