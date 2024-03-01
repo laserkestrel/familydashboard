@@ -12,30 +12,32 @@ async function fetchDataFromHue() {
         return response.data; // Assuming the response is JSON
     } catch (error) {
         console.error('Error fetching data from Hue API:', error);
-        return null;
+        throw error; // Rethrow the error to be caught by the error handling middleware
     }
 }
 
 // Route to render the HTML page
-app.get('/', async (req, res) => {
+app.get('/', async (req, res, next) => {
     try {
         const hueData = await fetchDataFromHue();
-        if (!hueData) {
-            throw new Error('Failed to fetch data from Hue API');
-        }
-
         // Render HTML using EJS template
         ejs.renderFile('template.ejs', { hueData }, (err, html) => {
             if (err) {
                 console.error('Error rendering template:', err);
-                res.status(500).send('Internal Server Error');
+                return next(err); // Pass the error to the error handling middleware
             } else {
                 res.send(html);
             }
         });
     } catch (error) {
-        res.status(500).send('Internal Server Error: ' + error.message);
+        return next(error); // Pass the error to the error handling middleware
     }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Internal Server Error:', err); // Log the error for debugging purposes
+    res.status(500).send('Internal Server Error: ' + err.message);
 });
 
 // Start the server to listen on all network interfaces
