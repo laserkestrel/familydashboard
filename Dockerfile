@@ -1,13 +1,20 @@
-# Define Node.js version
+# Use the official Node.js image as a base image
 FROM node:18
-# Create app directory
+
+# Set the working directory inside the container
 WORKDIR /usr/src/app
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
+
+# Install dependencies including axios
 RUN npm install
-# Bundle app source
+
+# Copy the rest of the application files to the working directory
 COPY . .
-# Define port to expose application for the outside world..
-EXPOSE 8080
-CMD [ "node", "index.js" ]
+
+# Expose port 3000 to the outside world
+EXPOSE 3000
+
+# Command to run your application
+CMD ["node", "index.js"]

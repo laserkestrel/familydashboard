@@ -1,0 +1,19 @@
+{
+    "name": "familydashboard",
+    "version": "1.0.0",
+    "description": "temp display and stuff",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/laserkestrel/familydashboard.git"
+    },
+    "author": "LaserKestrel",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/laserkestrel/familydashboard/issues"
+    },
+    "homepage": "https://github.com/laserkestrel/familydashboard#readme"
+  }
