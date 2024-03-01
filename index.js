@@ -47,6 +47,9 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error: ' + err.message);
 });
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+
 // Start the server to listen on all network interfaces
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
