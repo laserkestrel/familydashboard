@@ -20,6 +20,10 @@ async function fetchDataFromHue() {
 app.get('/', async (req, res, next) => {
     try {
         const hueData = await fetchDataFromHue();
+        
+        // Log the hueData object to the console
+        console.log('Hue Data:', hueData);
+
         // Render HTML using EJS template
         ejs.renderFile('template.ejs', { hueData }, (err, html) => {
             if (err) {
