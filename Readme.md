@@ -13,4 +13,5 @@ docker build -t familydashboard . <BR>
 docker ps # lists all images running<BR>
 docker run -d -p 3000:3000 familydashboard<BR>
 docker run -d -p 3000:3000 -e HUE_API_URL=http://ipaddress/api/secret/sensors/ familydashboard<BR>
+c=$(docker ps -q) && [[ $c ]] && docker kill $c<BR>
 docker logs biglongcontainerguid<BR>
