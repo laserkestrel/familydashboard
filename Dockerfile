@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the application files to the working directory
 COPY . .
 
+ENV HUE_API_KEY=
+ENV HUE_API_URL=
+
 # Expose port 3000 to the outside world
 EXPOSE 3000
 
