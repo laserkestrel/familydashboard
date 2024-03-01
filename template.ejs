@@ -11,7 +11,7 @@
         <% Object.keys(hueData).forEach(function(sensorId) { %>
             <% if (hueData[sensorId].state.temperature !== undefined) { %>
                 <li>
-                    Sensor ID: <%= sensorId %>, 
+                    Sensor Name: <%= hueData[sensorId].name %>,  
                     Temperature: <%= (hueData[sensorId].state.temperature / 100).toFixed(2) %>
                 </li>
             <% } %>
