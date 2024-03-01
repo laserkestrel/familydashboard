@@ -9,12 +9,7 @@
     <h1>Hue Sensor Temperatures</h1>
     <ul>
         <% Object.keys(hueData).forEach(function(sensorId) { %>
-            <% var sensor = data[sensorId]; %>
-            <% if (sensor.state && sensor.state.temperature !== undefined) { %>
-                <li>
-                    Sensor <%= sensorId %> Temperature: <%= sensor.state.temperature %> &deg;C
-                </li>
-            <% } %>
+            <li><%= sensorId %></li>
         <% }); %>
     </ul>
 </body>
