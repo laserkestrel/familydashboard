@@ -8,7 +8,7 @@ const PORT = 3000;
 // Fetch data from the Philips Hue API
 async function fetchDataFromHue() {
     try {
-        const response = await axios.get('YOUR_HUE_API_URL');
+        const response = await axios.get(process.env.HUE_API_URL);
         return response.data; // Assuming the response is JSON
     } catch (error) {
         console.error('Error fetching data from Hue API:', error);
