@@ -17,7 +17,7 @@ ENV HUE_API_KEY=
 ENV HUE_API_URL=
 
 # Expose port 3000 to the outside world
-EXPOSE 3000
+EXPOSE 80
 
 # Command to run your application
 CMD ["node", "index.js"]

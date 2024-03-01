@@ -3,7 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 
 const app = express();
-const PORT = 3000;
+const PORT = 80;
 
 // Fetch data from the Philips Hue API
 async function fetchDataFromHue() {
@@ -20,7 +20,7 @@ async function fetchDataFromHue() {
 app.get('/', async (req, res, next) => {
     try {
         const hueData = await fetchDataFromHue();
-        
+
         // Log the hueData object to the console
         console.log('Hue Data:', hueData);
 
