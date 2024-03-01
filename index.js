@@ -18,16 +18,20 @@ async function fetchDataFromHue() {
 
 // Route to render the HTML page
 app.get('/', async (req, res) => {
-    const hueData = await fetchDataFromHue();
-    // Render HTML using EJS template
-    ejs.renderFile('template.ejs', { hueData }, (err, html) => {
-        if (err) {
-            console.error('Error rendering template:', err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            res.send(html);
-        }
-    });
+    try {
+        const hueData = await fetchDataFromHue();
+        // Render HTML using EJS template
+        ejs.renderFile('template.ejs', { hueData }, (err, html) => {
+            if (err) {
+                console.error('Error rendering template:', err);
+                res.status(500).send('Internal Server Error');
+            } else {
+                res.send(html);
+            }
+        });
+    } catch (error) {
+        res.status(500).send('Internal Server Error: ' + error.message);
+    }
 });
 
 // Start the server to listen on all network interfaces
