@@ -3,44 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hue Temperature Sensors</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Hue Sensor Temperatures</title>
 </head>
 <body>
-    <h1>Hue Temperature Sensors</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Sensor Name</th>
-                <th>Temperature (°C)</th>
-                <th>Last Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% Object.keys(data).forEach(function(sensorId) { %>
-                <% var sensor = data[sensorId]; %>
-                <% if (sensor.type === 'ZLLTemperature') { %>
-                    <tr>
-                        <td><%= sensor.name %></td>
-                        <td><%= sensor.state.temperature / 100 %>°C</td>
-                        <td><%= sensor.state.lastupdated %></td>
-                    </tr>
-                <% } %>
-            <% }); %>
-        </tbody>
-    </table>
+    <h1>Hue Sensor Temperatures</h1>
+    <ul>
+        <% Object.keys(data).forEach(function(sensorId) { %>
+            <% var sensor = data[sensorId]; %>
+            <% if ([101, 166, 203, 206].includes(parseInt(sensorId))) { %>
+                <li>
+                    Sensor <%= sensorId %> Temperature: <%= sensor.state.temperature %> &deg;C
+                </li>
+            <% } %>
+        <% }); %>
+    </ul>
 </body>
 </html>
