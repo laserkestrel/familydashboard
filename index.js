@@ -16,6 +16,9 @@ async function fetchDataFromHue() {
     }
 }
 
+// Set the view engine to EJS
+app.set('view engine', 'ejs');
+
 // Route to render the HTML page
 app.get('/', async (req, res, next) => {
     try {

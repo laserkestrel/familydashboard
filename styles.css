@@ -1,0 +1,11 @@
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.sensor {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+}

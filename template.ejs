@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hue Sensor Temperatures</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>Hue Sensor Temperatures</h1>
-    <ul>
-        <% Object.keys(hueData).forEach(function(sensorId) { %>
-            <% if (hueData[sensorId].state.temperature !== undefined) { %>
-                <% const adjacentSensorId = parseInt(sensorId) - 2; %>
-                <% if (hueData[adjacentSensorId] !== undefined) { %>
-                    <li>
-                        Sensor Name: <%= hueData[adjacentSensorId].name %>, 
-                        Temperature: <%= (hueData[sensorId].state.temperature / 100).toFixed(2) %>
-                    </li>
-                <% } %>
-            <% } %>
+    <div id="sensor-container" class="sensor-grid">
+        <% hueData.forEach(function(sensor) { %>
+            <div class="sensor">
+                <h2><%= sensor.name %></h2>
+                <p>Temperature: <%= (sensor.state.temperature / 100).toFixed(2) %></p>
+            </div>
         <% }); %>
-    </ul>
+    </div>
 </body>
 </html>
