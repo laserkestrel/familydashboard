@@ -8,6 +8,6 @@ COPY package*.json ./
 RUN npm install
 # Bundle app source
 COPY . .
-# Define port to expose application for the outside world.
+# Define port to expose application for the outside world..
 EXPOSE 8080
 CMD [ "node", "server.js" ]
