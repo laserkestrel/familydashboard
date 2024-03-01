@@ -3,7 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 
 const app = express();
-const PORT = 443;
+const PORT = 80;
 
 // Fetch data from the Philips Hue API
 async function fetchDataFromHue() {
