@@ -20,7 +20,7 @@ async function fetchDataFromHue() {
 app.set('view engine', 'ejs');
 
 // Serve static files from the 'public' directory
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
 
 // Route to render the HTML page
 app.get('/', async (req, res, next) => {
