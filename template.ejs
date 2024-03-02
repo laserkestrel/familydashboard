@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hue Sensor Temperatures1</title>
+    <title>Hue Sensor Temperatures</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
@@ -17,7 +17,7 @@
                 <% if (hueData[adjacentSensorId] !== undefined) { %>
                     <div class="sensor">
                         <h2><%= hueData[adjacentSensorId].name %></h2>
-                        <p>Temperature: <%= (sensor.state.temperature / 100).toFixed(2) %></p>
+                        <p><%= (sensor.state.temperature / 100).toFixed(2) %>°C</p>
                     </div>
                 <% } %>
             <% } %>
