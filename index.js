@@ -21,7 +21,6 @@ async function fetchDataFromHue() {
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
 
 // Route to render the HTML page
 app.get('/', async (req, res, next) => {
@@ -31,29 +30,7 @@ app.get('/', async (req, res, next) => {
         // Log the hueData object to the console
         console.log('Hue Data:', hueData);
 
-        // Apply color change logic to temperature values
-        hueData.sensors.forEach(sensor => {
-            if (sensor.type === 'temperature') {
-                // Extract temperature value from sensor data
-                const temperature = parseFloat(sensor.state.temperature);
-
-                // Determine color based on temperature value
-                let hue;
-                if (temperature <= 0) {
-                    hue = 240; // Blue for very cold temperatures
-                } else if (temperature >= 50) {
-                    hue = 0; // Red for warm temperatures
-                } else {
-                    // Interpolate hue value between blue and red
-                    hue = (1 - (temperature / 50)) * 240;
-                }
-
-                // Add color property to sensor data
-                sensor.temperatureColor = `hsl(${hue}, 100%, 50%)`;
-            }
-        });
-
-        // Render HTML using EJS template with updated data
+        // Render HTML using EJS template
         ejs.renderFile('template.ejs', { hueData }, (err, html) => {
             if (err) {
                 console.error('Error rendering template:', err);
@@ -68,14 +45,12 @@ app.get('/', async (req, res, next) => {
 });
 
 // Error handling middleware
-app.use(express.static('public'));
 app.use((err, req, res, next) => {
     console.error('Internal Server Error:', err); // Log the error for debugging purposes
     res.status(500).send('Internal Server Error: ' + err.message);
 });
 
 // Start the server to listen on all network interfaces
-app.use(express.static('public'));
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
