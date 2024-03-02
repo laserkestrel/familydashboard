@@ -18,12 +18,13 @@
     font-family: sans-serif;
     font-size: 1.2rem;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .sensor p {
     margin: 0;
     font-family: sans-serif;
-    font-size: 1rem;
+    font-size: 3.5rem;
     color: #28928d;
 }
 
