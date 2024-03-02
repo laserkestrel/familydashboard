@@ -24,7 +24,6 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // Route to render the HTML page
-app.use(express.static('public'));
 app.get('/', async (req, res, next) => {
     try {
         const hueData = await fetchDataFromHue();
@@ -32,7 +31,29 @@ app.get('/', async (req, res, next) => {
         // Log the hueData object to the console
         console.log('Hue Data:', hueData);
 
-        // Render HTML using EJS template
+        // Apply color change logic to temperature values
+        hueData.sensors.forEach(sensor => {
+            if (sensor.type === 'temperature') {
+                // Extract temperature value from sensor data
+                const temperature = parseFloat(sensor.state.temperature);
+
+                // Determine color based on temperature value
+                let hue;
+                if (temperature <= 0) {
+                    hue = 240; // Blue for very cold temperatures
+                } else if (temperature >= 50) {
+                    hue = 0; // Red for warm temperatures
+                } else {
+                    // Interpolate hue value between blue and red
+                    hue = (1 - (temperature / 50)) * 240;
+                }
+
+                // Add color property to sensor data
+                sensor.temperatureColor = `hsl(${hue}, 100%, 50%)`;
+            }
+        });
+
+        // Render HTML using EJS template with updated data
         ejs.renderFile('template.ejs', { hueData }, (err, html) => {
             if (err) {
                 console.error('Error rendering template:', err);
