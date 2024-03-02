@@ -21,8 +21,10 @@ async function fetchDataFromHue() {
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 // Route to render the HTML page
+app.use(express.static('public'));
 app.get('/', async (req, res, next) => {
     try {
         const hueData = await fetchDataFromHue();
@@ -45,12 +47,14 @@ app.get('/', async (req, res, next) => {
 });
 
 // Error handling middleware
+app.use(express.static('public'));
 app.use((err, req, res, next) => {
     console.error('Internal Server Error:', err); // Log the error for debugging purposes
     res.status(500).send('Internal Server Error: ' + err.message);
 });
 
 // Start the server to listen on all network interfaces
+app.use(express.static('public'));
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
